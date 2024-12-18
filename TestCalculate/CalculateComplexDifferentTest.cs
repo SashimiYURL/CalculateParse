@@ -29,6 +29,14 @@ namespace TestCalculate
         [InlineData("20,5/4,1", "5")]
         public void ExpressionFractionalNumTest(string expression, string result)=> Check(expression, result);
 
+        [Theory]
+        [InlineData("-5", "-5")]
+        [InlineData("-(-1 + 8)", "-7")]
+        [InlineData("(10*3 + 5) + (-10 + 5)", "30")]
+        [InlineData("-(7+11)", "-18")]
+        [InlineData("7-3", "2")]
+        public void UnaryMinusTest(string expression, string result) => Check(expression, result);
+
         private void Check(string expression, string result)
         {
             var calculator = new Calculator(expression);

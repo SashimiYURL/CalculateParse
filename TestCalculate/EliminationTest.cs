@@ -14,6 +14,7 @@ namespace TestCalculate
         [InlineData("((2+2)*2))")]
         [InlineData(")(2*2)(")]
         [InlineData("(34*23+5)((3+5)(+4)")]
+        [InlineData("()(2*7)")]
         public void BracketExceptions(string expression) => TrowInvalidOperationException(expression);
         [Theory]
         [InlineData("5 + 9 ? 5")]
@@ -28,8 +29,12 @@ namespace TestCalculate
         }
         [Fact]
         public void EmptyExpression() => TrowInvalidOperationException("");
-        [Fact]
-        public void InvalidExpression() => TrowInvalidOperationException("1 + + 4");
+        
+        [Theory]
+        [InlineData("+ 5 + 5")]
+        [InlineData("4 + 4 +")]
+        [InlineData("3 * + 3")]
+        public void InvalidExpression(string expression) => TrowInvalidOperationException(expression);
 
         private void TrowInvalidOperationException(string exception) => Assert.Throws<InvalidOperationException>(() => new Calculator(exception).Calculate());
     }

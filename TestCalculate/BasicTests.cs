@@ -8,11 +8,7 @@ namespace TestCalculate
         [InlineData("2 - 2", "0")]
         [InlineData("2 / 2", "1")]
         [InlineData("2 * 2", "4")]
-        public void Calculate_OneOperationWithTwoNumbers(string expression, string result)
-        {
-            var calculator = new Calculator(expression);
-            Assert.Equal(result, calculator.Calculate());
-        }
+        public void Calculate_OneOperationWithTwoNumbers(string expression, string result) => Check(expression, result);
 
         [Theory]
         [InlineData("6*3-2", "16")]
@@ -21,10 +17,11 @@ namespace TestCalculate
         [InlineData("18/2-4", "5")]
         [InlineData("20/5/4", "1")]
         [InlineData("25/5-6", "-1")]
-        public void Calculate_TwoOperationWithThreeNumbers(string expression, string result)
+        public void CalculateTwoOperationWithThreeNumbers(string expression, string result) => Check(expression, result);
+
+        private void Check(string expression, string result)
         {
             var calculator = new Calculator(expression);
-
             Assert.Equal(result, calculator.Calculate());
         }
     }

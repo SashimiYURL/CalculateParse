@@ -15,7 +15,6 @@ namespace TestCalculate
         public string Calculate()
         {
             string postfixString = ExpressionReversePolish.GetPostfixExpression(_expression);
-            if (postfixString.Contains("Exceptions")) return "Неизвестный символ!";
             return CalculatePostfixString(postfixString).ToString();
         }
         private double CalculatePostfixString(string input)
@@ -47,7 +46,7 @@ namespace TestCalculate
                         case '+': result = b + a; break;
                         case '-': result = b - a; break;
                         case '*': result = b * a; break;
-                        case '/': result = b / a; break;
+                        case '/': result = (a != 0) ? b / a : throw new DivideByZeroException("Деление на ноль!"); break;
                         case '^': result = double.Parse(Math.Pow(double.Parse(b.ToString()), double.Parse(a.ToString())).ToString()); break;
                     }
                     temp.Push(result); //Результат вычисления записываем обратно в стек

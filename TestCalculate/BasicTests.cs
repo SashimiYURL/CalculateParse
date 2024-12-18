@@ -19,10 +19,6 @@ namespace TestCalculate
         [InlineData("25/5-6", "-1")]
         public void CalculateTwoOperationWithThreeNumbers(string expression, string result) => Check(expression, result);
 
-        private void Check(string expression, string result)
-        {
-            var calculator = new Calculator(expression);
-            Assert.Equal(result, calculator.Calculate());
-        }
+        private void Check(string expression, string result) => Assert.Equal(result, new Calculator(expression).Calculate());
     }
 }

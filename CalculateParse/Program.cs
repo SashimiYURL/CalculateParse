@@ -8,6 +8,14 @@ class Program
     {
         string input = Console.ReadLine();
         var calc = new Calculator(input);
-        Console.WriteLine(calc.Calculate());
+        try
+        {
+            var result = calc.Calculate();
+            Console.WriteLine($"Результат:{result}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка:{ex.Message}");
+        }
     }
 }

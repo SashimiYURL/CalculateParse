@@ -12,6 +12,7 @@ namespace CalculateParse
         private string _expression = expression;
         public static string GetPostfixExpression(string input)
         {
+            if (input == string.Empty) throw new InvalidOperationException($"Пустое выражение!");
             string output = string.Empty; //Строка для хранения выражения
             Stack<char> operStack = new Stack<char>(); //Стек для хранения операторов
             for (int i = 0; i < input.Length; i++) //Для каждого символа в входной строке
@@ -54,6 +55,10 @@ namespace CalculateParse
                                 output += operStack.Pop().ToString() + " "; //То добавляем последний оператор из стека в строку с выражением
                         operStack.Push(char.Parse(input[i].ToString())); //Если стек пуст, или же приоритет оператора выше - добавляем операторов на вершину стека
                     }
+                }
+                if (!IsDelimeter(input[i]) && !IsOperator(input[i]) && !Char.IsDigit(input[i]))
+                {
+                    throw new InvalidOperationException($"Неизвестный символ {input[i]}");
                 }
             }
             //Когда прошли по всем символам, выкидываем из стека все оставшиеся там операторы в строку

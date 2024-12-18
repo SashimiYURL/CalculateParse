@@ -15,6 +15,7 @@ namespace TestCalculate
         public string Calculate()
         {
             string postfixString = ExpressionReversePolish.GetPostfixExpression(_expression);
+            if (postfixString.Contains("Exceptions")) return "Неизвестный символ!";
             return CalculatePostfixString(postfixString).ToString();
         }
         private double CalculatePostfixString(string input)

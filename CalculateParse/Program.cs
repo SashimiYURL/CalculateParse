@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using CalculateParse;
+using System;
+using TestCalculate;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        string input = Console.ReadLine();
+        var calc = new Calculator(input);
+        Console.WriteLine(calc.Calculate());
+    }
+}

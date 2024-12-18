@@ -61,12 +61,12 @@ namespace CalculateParse
                 output += operStack.Pop() + " ";
             return output; //Возвращаем выражение в постфиксной записи
         }
-        static private bool IsOperator(char с)
+        static public bool IsOperator(char с)
         {
             if (("+-/*^()".Contains(с))) return true;
             return false;
         }
-        static private bool IsDelimeter(char c)
+        static public bool IsDelimeter(char c)
         {
             if ((" =".Contains(c))) return true;
             return false;
